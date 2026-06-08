@@ -2,11 +2,11 @@
 use mrp_movements;
 
 # economic value in class A material
-create view v_economic_value_class_a as 
+create or replace view v_economic_value_class_a as 
 SELECT 
     outputs.SAP_CODE,
     outputs.MATERIAL,
-    (outputs.TOTAL_OUTPUTS * prices.MEDIAN_PRICE) AS ECONOMIC_VALUE_USD,
+    round(outputs.TOTAL_OUTPUTS * prices.MEDIAN_PRICE, 2) AS ECONOMIC_VALUE_USD,
     RANK() OVER (ORDER BY (outputs.TOTAL_OUTPUTS * prices.MEDIAN_PRICE) DESC) AS MATERIAL_ECONOMIC_RANK
 FROM (
     SELECT SAP_CODE, MATERIAL, SUM(QUANTITY) AS TOTAL_OUTPUTS
@@ -32,7 +32,7 @@ limit 19
 ;
 
 # Dead stock valuation
-create view v_dead_stock as
+create or replace view v_economic_impact_dead_stock as
 select
 	sum(entries.QUANTITY * entries.UNIT_PRICE_USD) AS TOTAL_DEAD_STOCK_VALUE_USD
 FROM entries 
@@ -41,7 +41,7 @@ where outputs.SAP_CODE is null
 ;
 
 # Unspecified material requests
-create view  v_unspecified_requests as
+create or replace view  v_unspecified_requests as
 select
 	SAP_CODE, `DATE`, MATERIAL, UNIT_OF_MEASURE, QUANTITY, REQUESTING_DEPARTMENT, `REQUESTED_BY`, `APPROVED_BY`
 from outputs
@@ -49,6 +49,29 @@ where
 	REQUESTING_DEPARTMENT = 'UNSPECIFIED'
 ;
 
+# Economic Impact of Materials with Unattributed Cost Centers
+create or replace view v_material_unit_costs AS
+SELECT 
+    SAP_CODE, 
+    AVG(UNIT_PRICE_USD) as avg_unit_cost
+FROM entries
+GROUP BY SAP_CODE
+;
 
+create or replace view v_unspecified_impact_details AS
+SELECT 
+    u.SAP_CODE,
+    u.MATERIAL,
+    (u.QUANTITY * c.avg_unit_cost) AS TOTAL_IMPACT
+FROM v_unspecified_requests u
+LEFT JOIN v_material_unit_costs c ON u.SAP_CODE = c.SAP_CODE
+;
+
+create or replace view v_economic_impact_unspecified AS
+SELECT 
+    round(sum(u.QUANTITY * c.avg_unit_cost), 2) AS TOTAL_IMPACT
+FROM v_unspecified_requests u
+LEFT JOIN v_material_unit_costs c ON u.SAP_CODE = c.SAP_CODE
+;
 
     
