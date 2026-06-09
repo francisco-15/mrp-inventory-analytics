@@ -28,7 +28,7 @@ def render_resume_cards():
 
                 st.image("./images/box.png", width=300)
             with c2:
-                st.markdown(f"<p style='{title_style}'>Materiales Sin Depto.</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{title_style}'>Salidas sin especificar depto</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#991b1b;'>${impact_unspecified:,.2f}</h3>", unsafe_allow_html=True)
                 st.markdown(f"<p style='{sub_style} color:#d97706;'>⚠️ {count_unspecified_dept} salidas sin asignar</p>", unsafe_allow_html=True)
 
@@ -50,6 +50,6 @@ def render_resume_cards():
             with c1:
                 st.image("./images/a_class.png", width=100)
             with c2:
-                st.markdown(f"<p style='{title_style}'>Impacto Econ. Clase A</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{title_style}'>Impacto Económico. Clase A</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#15803d'>${impact_a_class:,.2f}</h3>", unsafe_allow_html=True)
                 st.markdown(f"<p style='{sub_style} color:#22c55e;'>💸 79,32% Valor Inventario</p>", unsafe_allow_html=True)
