@@ -5,16 +5,16 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 def render_plots():
-    # 1. data
+    # data
     df_financial = plot_financial_supplier_summary() 
     df_unassigned_materials = get_unassigned_materials()
     df_economic_impact_by_department = get_economic_impact_by_department()
 
-    # Captura el idioma global
-    idioma = st.session_state.get("idioma", "Español")
+    # capture the global language
+    language = st.session_state.get("idioma", "Español")
 
-    # Mapeo de títulos de las gráficas
-    titulos_graficas = {
+    # mapping of chart titles
+    tile_plot = {
         "Español": {
             "p1": "MATERIALES EMITIDOS SIN DEPARTAMENTO",
             "p2": "Inversión Histórica en Adquisiciones por Proveedor",
@@ -43,9 +43,10 @@ def render_plots():
     col1, col2, col3 = st.columns(3)
 
     with col1:
+         # count frequency of materials
          df_frequency = df_unassigned_materials['MATERIAL'].value_counts().reset_index()
          df_frequency.columns = ['MATERIAL', 'FREQUENCE']
-         plot1 = {titulos_graficas[idioma]["p1"]: df_frequency}
+         plot1 = {tile_plot[language]["p1"]: df_frequency}
          engine_plot1 = engine(
                         plot1,
                         'pie',
@@ -55,7 +56,8 @@ def render_plots():
          )
 
     with col2:
-         plot2 = {titulos_graficas[idioma]["p2"]: df_financial}
+         # plot financial summary
+         plot2 = {tile_plot[language]["p2"]: df_financial}
          engine_plot2 = engine(
                         plot2,
                          'bar',
@@ -67,7 +69,8 @@ def render_plots():
          )
 
     with col3:
-         plot3 = {titulos_graficas[idioma]["p3"]: df_economic_impact_by_department}
+         # plot economic impact by department
+         plot3 = {tile_plot[language]["p3"]: df_economic_impact_by_department}
          engine_plot3 = engine(plot3,
                          'bar',
                          'ECONOMIC_IMPACT',

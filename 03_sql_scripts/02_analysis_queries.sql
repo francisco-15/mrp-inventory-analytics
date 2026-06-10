@@ -32,12 +32,10 @@ limit 19
 ;
 
 # Dead stock valuation
-create or replace view v_economic_impact_dead_stock as
-select
-	sum(entries.QUANTITY * entries.UNIT_PRICE_USD) AS TOTAL_DEAD_STOCK_VALUE_USD
-FROM entries 
-LEFT JOIN outputs ON entries.SAP_CODE = outputs.SAP_CODE
-where outputs.SAP_CODE is null
+create or replace VIEW v_economic_impact_dead_stock AS 
+SELECT SUM(TOTAL_AMOUNT) AS TOTAL_DEAD_STOCK_VALUE_USD 
+FROM financial_supplier_summary 
+WHERE ABC_CLASSIFICATION = 'DEAD STOCK'
 ;
 
 # Unspecified material requests

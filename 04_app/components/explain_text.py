@@ -13,11 +13,11 @@ def render_explain():
     impact_dead_stock = get_economic_impact_dead_stock().iloc[0, 0]
     impact_a_class = get_economic_impact_a_class().iloc[0, 0]
 
-    # Captura el idioma global
-    idioma = st.session_state.get("idioma", "Español")
+    # capture the global language
+    language = st.session_state.get("idioma", "Español")
 
-    # Gran diccionario de traducciones corporativas con f-strings e inyecciones seguras (\\$)
-    textos = {
+    # corporate translations dictionary with f-strings and secure injections (\\$)
+    text = {
         "Español": {
             "col1_t1": "### Materiales Emitidos sin Departamento",
             "col1_c1": f"Se registraron **{count_unspecified_dept} salidas de almacén sin asignar**, lo que significa que se desconoce el departamento de destino final que recibió dichos insumos. Este vacío de trazabilidad representa un coste económico acumulado de **\\${impact_unspecified:,.2f} USD**.",
@@ -93,21 +93,21 @@ def render_explain():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown(textos[idioma]["col1_t1"])
-        st.write(textos[idioma]["col1_c1"])
-        st.markdown(textos[idioma]["col1_t2"])
-        st.markdown(textos[idioma]["col1_l1"])
+        st.markdown(text[language]["col1_t1"])
+        st.write(text[language]["col1_c1"])
+        st.markdown(text[language]["col1_t2"])
+        st.markdown(text[language]["col1_l1"])
         
     with col2:
-        st.markdown(textos[idioma]["col2_t1"])
-        st.write(textos[idioma]["col2_c1"])
-        st.markdown(textos[idioma]["col2_t2"])
-        st.write(textos[idioma]["col2_c2"])
-        st.markdown(textos[idioma]["col2_sub_title"])
-        st.markdown(textos[idioma]["col2_l1"])
+        st.markdown(text[language]["col2_t1"])
+        st.write(text[language]["col2_c1"])
+        st.markdown(text[language]["col2_t2"])
+        st.write(text[language]["col2_c2"])
+        st.markdown(text[language]["col2_sub_title"])
+        st.markdown(text[language]["col2_l1"])
         
     with col3:
-        st.markdown(textos[idioma]["col3_t1"])
-        st.write(textos[idioma]["col3_c1"])
-        st.markdown(textos[idioma]["col3_t2"])
-        st.markdown(textos[idioma]["col3_l1"])
+        st.markdown(text[language]["col3_t1"])
+        st.write(text[language]["col3_c1"])
+        st.markdown(text[language]["col3_t2"])
+        st.markdown(text[language]["col3_l1"])

@@ -5,16 +5,17 @@ from components.explain_text import render_explain
 
 # config (Obligatoriamente debe ser el primer comando de Streamlit)
 st.set_page_config(
-    page_title="Resumen Ejecutivo de Inventario / Inventory Executive Summary",
+    page_title="Inventory Executive Summary",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    page_icon='./images/logo_web.svg'
 )
 
-# 🌐 Selector de idioma centralizado en la barra lateral
+# 🌐 language sidebar
 idioma = st.sidebar.selectbox("🌐 Idioma / Language", ["Español", "English"])
 st.session_state["idioma"] = idioma
 
-# Título principal adaptativo
+# titles
 if idioma == "Español":
     st.header("Resumen ejecutivo del inventario")
 else:

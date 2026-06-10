@@ -10,11 +10,11 @@ def render_resume_cards():
     impact_dead_stock = get_economic_impact_dead_stock().iloc[0, 0]
     impact_a_class = get_economic_impact_a_class().iloc[0, 0]
 
-    # Captura el idioma global seleccionado en app.py
-    idioma = st.session_state.get("idioma", "Español")
+    # capture the global language selected in app.py
+    language = st.session_state.get("idioma", "Español")
 
-    # Mapeo de textos dinámicos para las tarjetas
-    textos_cards = {
+    # mapping of dynamic texts for the cards
+    card_text = {
         "Español": {
             "c1_title": "Salidas sin especificar depto",
             "c1_sub": f"⚠️ {count_unspecified_dept} salidas sin asignar",
@@ -47,9 +47,9 @@ def render_resume_cards():
             with c1:
                 st.image("./images/box.png", width=300)
             with c2:
-                st.markdown(f"<p style='{title_style}'>{textos_cards[idioma]['c1_title']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{title_style}'>{card_text[language]['c1_title']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#991b1b;'>${impact_unspecified:,.2f}</h3>", unsafe_allow_html=True)
-                st.markdown(f"<p style='{sub_style} color:#d97706;'>{textos_cards[idioma]['c1_sub']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{sub_style} color:#d97706;'>{card_text[language]['c1_sub']}</p>", unsafe_allow_html=True)
 
     # second card ------> dead stock
     with col2:
@@ -58,17 +58,17 @@ def render_resume_cards():
             with c1:
                 st.image("./images/dead_stock.png", width=300)
             with c2:
-                st.markdown(f"<p style='{title_style}'>{textos_cards[idioma]['c2_title']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{title_style}'>{card_text[language]['c2_title']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#991b1b;'>${impact_dead_stock:,.2f}</h3>", unsafe_allow_html=True)
-                st.markdown(f"<p style='{sub_style} color:#dc2626;'>{textos_cards[idioma]['c2_sub']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{sub_style} color:#dc2626;'>{card_text[language]['c2_sub']}</p>", unsafe_allow_html=True)
 
-    # third card -------> economic value A class
+    # third card -------> economic value a class
     with col3:
         with st.container(border=True):
             c1, c2 = st.columns([1, 3.5])
             with c1:
                 st.image("./images/a_class.png", width=100)
             with c2:
-                st.markdown(f"<p style='{title_style}'>{textos_cards[idioma]['c3_title']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{title_style}'>{card_text[language]['c3_title']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#15803d'>${impact_a_class:,.2f}</h3>", unsafe_allow_html=True)
-                st.markdown(f"<p style='{sub_style} color:#22c55e;'>{textos_cards[idioma]['c3_sub']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='{sub_style} color:#22c55e;'>{card_text[language]['c3_sub']}</p>", unsafe_allow_html=True)
