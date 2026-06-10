@@ -1,6 +1,13 @@
 import streamlit as st
 from db.queries import unspecified_dept_outputs, get_economic_impact_unspecified, get_economic_impact_dead_stock, \
 get_economic_impact_a_class
+import os
+
+# path images
+current_dir = os.path.dirname(os.path.abspath(__file__))
+image_Unspecified = os.path.join(current_dir, "..", "images", "box.png")
+image_dead_stock = os.path.join(current_dir, "..", "images", "dead_stock.png")
+image_a_class = os.path.join(current_dir, "..", "images", "a_class.png")
 
 def render_resume_cards():
     # data
@@ -45,7 +52,7 @@ def render_resume_cards():
         with st.container(border=True):
             c1, c2 = st.columns([1, 3.5])
             with c1:
-                st.image("./images/box.png", width=300)
+                st.image(image_Unspecified, width=300)
             with c2:
                 st.markdown(f"<p style='{title_style}'>{card_text[language]['c1_title']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#991b1b;'>${impact_unspecified:,.2f}</h3>", unsafe_allow_html=True)
@@ -56,7 +63,7 @@ def render_resume_cards():
         with st.container(border=True):
             c1, c2 = st.columns([1, 3.5])
             with c1:
-                st.image("./images/dead_stock.png", width=300)
+                st.image(image_dead_stock, width=300)
             with c2:
                 st.markdown(f"<p style='{title_style}'>{card_text[language]['c2_title']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#991b1b;'>${impact_dead_stock:,.2f}</h3>", unsafe_allow_html=True)
@@ -67,7 +74,7 @@ def render_resume_cards():
         with st.container(border=True):
             c1, c2 = st.columns([1, 3.5])
             with c1:
-                st.image("./images/a_class.png", width=100)
+                st.image(image_a_class, width=100)
             with c2:
                 st.markdown(f"<p style='{title_style}'>{card_text[language]['c3_title']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<h3 style='{value_style} color:#15803d'>${impact_a_class:,.2f}</h3>", unsafe_allow_html=True)

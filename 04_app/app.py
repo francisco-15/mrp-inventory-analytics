@@ -2,13 +2,17 @@ import streamlit as st
 from components.resume_card import render_resume_cards
 from components.show_plot import render_plots
 from components.explain_text import render_explain
+import os
+# image path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+logo_web = os.path.join(current_dir,"images", "logo_web.svg")
 
-# config (Obligatoriamente debe ser el primer comando de Streamlit)
+# config 
 st.set_page_config(
     page_title="Inventory Executive Summary",
     layout="wide",
     initial_sidebar_state="expanded",
-    page_icon='./images/logo_web.svg'
+    page_icon=logo_web
 )
 
 # 🌐 language sidebar
