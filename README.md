@@ -45,7 +45,7 @@ The system implements a modern data pipeline fully deployed in the cloud:
 ## 💻 Local Installation & Usage
 
 1. Clone the repository:
-   ```bash
+```bash
    git clone git@github.com:francisco-15/mrp-inventory-analytics.git
    ```
    
