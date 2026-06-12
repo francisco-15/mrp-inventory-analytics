@@ -1,6 +1,6 @@
 # MRP Inventory Analytics Dashboard 📊📦
 
-🌐 **Language / Idioma:** **English** 🇬🇧 | [Ver versión en Español 🇪🇸](./README.es.md)
+🌐 **Language / Idioma:** **English** 🇬🇧 | [Ver versión en Español 🇪🇸](./README.md)
 
 🚀 **Live Project:** [Visit the Web Application](https://mrp-control-analytics.streamlit.app/)
 🧪 **Exploratory Data Analysis:** [View Google Colab Notebook](https://colab.research.google.com/drive/1_kauPu9APz_9DaEF3KV2am5usiBq6gWY?usp=sharing)
