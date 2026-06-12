@@ -1,53 +1,54 @@
-# Dashboard de Analítica de Inventarios MRP 📊📦
+# MRP Inventory Analytics Dashboard 📊📦
 
-🌐 **Language / Idioma:** [View English Version 🇬🇧](./README.md) | **Español** 🇪🇸
+🌐 **Language / Idioma:** **English** 🇬🇧 | [Ver versión en Español 🇪🇸](./README.es.md)
 
-🚀 **Proyecto en vivo:** [Visitar la Aplicación Web](https://mrp-control-analytics.streamlit.app/)
-🧪 **Análisis exploratorio de datos:** [Ver Google Colab](https://colab.research.google.com/drive/1_kauPu9APz_9DaEF3KV2am5usiBq6gWY?usp=sharing)
+🚀 **Live Project:** [Visit the Web Application](https://mrp-control-analytics.streamlit.app/)
+🧪 **Exploratory Data Analysis:** [View Google Colab Notebook](https://colab.research.google.com/drive/1_kauPu9APz_9DaEF3KV2am5usiBq6gWY?usp=sharing)
 
 ---
 
-## 💼 Contexto y Problema de Negocio
+## 💼 Business Context & Problem
 
-En la gestión de inventarios industriales, se detectaron inconsistencias de gran envergadura debido a la falta de trazabilidad en los movimientos de material, causada por datos no proporcionados en el dataset original. Esta deficiencia genera una retención de insumos que se traduce en posibles pérdidas monumentales por concepto de stock muerto (Dead Stock).
+In industrial inventory management, major inconsistencies were detected due to a lack of traceability in material movements, caused by missing data fields in the original dataset. This deficiency results in overstocking, translating into potentially massive losses due to Dead Stock.
 
-Este proyecto nació con la finalidad de realizar un análisis profundo de estos datos para comprender la naturaleza y el calibre de las problemáticas presentes en esta gestión, con el fin de atacar estas ineficiencias y optimizar el flujo de trabajo del almacén.
+This project was developed to perform a deep-dive analysis of these data logs to understand the nature and scale of the operational challenges, ultimately targeting these inefficiencies and optimizing the warehouse workflow.
 
-* **Falta de trazabilidad:** Salidas de materiales sin registrar el departamento solicitante, lo que impide auditar el consumo final.
-* **Acumulación de stock muerto:** Acumulación de materiales sin rotación que ocupan espacio físico y representan un alto riesgo de pérdida por obsolescencia o vencimiento.
-* **Errores de stock:** Al auditar la hoja de control de existencias, se identificó información poco fidedigna, incluyendo stocks negativos e inconsistencias con los registros históricos.
+* **Lack of Traceability:** Material outputs registered without an assigned requesting department, making it impossible to audit final consumption.
+* **Dead Stock Accumulation:** Stagnant materials with zero turnover that occupy physical warehouse space and pose a high risk of loss due to obsolescence or expiration.
+* **Stock Inconsistencies:** Auditing the stock balance sheet revealed unreliable records, including negative stock values and data mismatches with historical movement logs.
 
-## 🚀 Solución Desarrollada
+## 🚀 Developed Solution
 
-Se construyó un Dashboard Analítico Ejecutivo y bilingüe (Español/Inglés) utilizando Python y Streamlit para automatizar la auditoría de inventarios y proveer insights accionables:
+An interactive, bilingual (English/Spanish) Executive Analytics Dashboard was built using Python and Streamlit to automate inventory auditing and provide actionable insights:
 
-* **Valor de materiales Clase A:** Identificación del impacto económico de los materiales Clase A, los cuales representan el 79.32% del valor total del inventario. Este insight permite a la gerencia priorizar esfuerzos de control en los activos que representan la mayor inversión.
-* **Métricas de Impacto Económico:** Conversión de datos técnicos a indicadores de negocio, calculando el capital exacto congelado en Stock Muerto y movimientos no asignados, permitiendo visualizar el valor monetario (USD) en riesgo.
-* **Auditoría de Proveedores y Departamentos:** Análisis detallado de compras por proveedor y consumo por departamento, facilitando la detección de ineficiencias comerciales y oportunidades de mejora en la cadena de suministro.
+* **Class A Materials Value:** Identification of the economic impact of Class A materials, which represent 79.32% of the total inventory value. This insight allows management to prioritize control efforts on the assets driving the largest financial investment.
+* **Economic Impact Metrics:** Translation of technical data into business KPIs, calculating the exact capital frozen in Dead Stock and unassigned movements to visualize the precise financial value (USD) at risk.
+* **Supplier & Department Auditing:** Granular analysis of purchases per supplier and consumption per department, facilitating the detection of commercial inefficiencies and cost-saving opportunities across the supply chain.
 
-## 🛠️ Stack Tecnológico y Arquitectura
+## 🛠️ Tech Stack & Architecture
 
-El sistema implementa una arquitectura de datos moderna y completamente desplegada en la nube:
+The system implements a modern data pipeline fully deployed in the cloud:
 
-* **Base de Datos:** MySQL.
-* **Infraestructura Cloud:** Base de datos relacional alojada en **Aiven Cloud**.
-* **Lenguajes y Librerías:** Python (`Pandas`, `SQLAlchemy`, `Matplotlib`, `Seaborn`).
-* **Interfaz y Despliegue:** `Streamlit` y `Streamlit Community Cloud`.
+* **Database:** MySQL.
+* **Cloud Infrastructure:** Relational database hosted on **Aiven Cloud**.
+* **Languages & Libraries:** Python (`Pandas`, `SQLAlchemy`, `Matplotlib`, `Seaborn`).
+* **Interface & Deployment:** `Streamlit` and `Streamlit Community Cloud`.
 
-## 🧠🧗 Retos Técnicos y Aprendizajes
+## 🧠🧗 Technical Challenges & Learnings
 
-* **Migración a la Nube y Restricciones de Permisos (MySQL Error 1227):** Al migrar el esquema de la base de datos local a *Aiven Cloud*, el servidor remoto rechazó el script de importación debido a políticas estrictas de seguridad sobre los privilegios de usuario (restricciones de `DEFINER` en las vistas).
-  * *Solución:* Se reconfiguró el flujo de exportación utilizando parámetros avanzados en MySQL Workbench (`--skip-definer` y `--skip-triggers`). Esto permitió generar un volcado SQL neutro y compatible con los estándares de seguridad en la nube, garantizando la integridad del modelo de datos.
+* **Cloud Migration & Permissions Restrictions (MySQL Error 1227):** When migrating the local database schema to *Aiven Cloud*, the remote server rejected the import script due to strict security policies regarding user privileges (`DEFINER` constraints on views).
+  * *Solution:* Reconfigured the database export pipeline using advanced flags in MySQL Workbench (`--skip-definer` and `--skip-triggers`). This generated a clean, environment-neutral SQL dump compatible with cloud security standards, ensuring the underlying data model's integrity.
 
-* **Automatización de Procesos por Lotes (Batch Processing):** Al implementar la lógica para procesar materiales por lotes, enfrenté un desafío técnico debido a que era mi primera experiencia aplicando esta arquitectura sumado con la primera vez que trabajba con groq en análiis del google colab.
-  * *Solución:* Realicé una investigación profunda en repositorios de referencia y utilicé el apoyo de herramientas de Inteligencia Artificial para reestructurar la lógica de mi script, logrando una implementación funcional y eficiente.
+* **Automated Batch Processing:** When implementing the architecture to process material descriptions in batches, I faced a technical structural challenge as it was my first time applying this design pattern, combined with my first experience integrating the **Groq** API for text analysis inside the **Google Colab** environment.
+  * *Solution:* Conducted deep research across reference repositories and leveraged Artificial Intelligence tools to restructure the script's logic, achieving an efficient, high-performance, and functional data enrichment pipeline.
 
-## 💻 Instalación y Uso Local
+## 💻 Local Installation & Usage
 
-1. Clona el repositorio:
-```bash
-git clone git@github.com:francisco-15/mrp-inventory-analytics.git
-```
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:francisco-15/mrp-inventory-analytics.git
+   ```
+   
 2. Instala las dependencias:
  ```bash
   pip install -r requirements.txt
