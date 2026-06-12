@@ -47,12 +47,14 @@ El sistema implementa una arquitectura de datos moderna y completamente desplega
 1. Clona el repositorio:
    ```bash
    git clone git@github.com:francisco-15/mrp-inventory-analytics.git
-
+   ```
 2. Instala las dependencias:
  ```bash
   pip install -r requirements.txt
+  ```
 
 4. Ejecutar:
  ```bash
  streamlit run app.py
+ ```
   
