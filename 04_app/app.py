@@ -21,9 +21,9 @@ st.session_state["idioma"] = idioma
 
 # titles
 if idioma == "Español":
-    st.header("Resumen ejecutivo del inventario")
+    st.header("RESUMEN EJECUTIVO DEL INVENTARIO")
 else:
-    st.header("Executive Inventory Summary")
+    st.header("EXECUTIVE INVENTORY SUMMARY")
 
 # section cards
 render_resume_cards()

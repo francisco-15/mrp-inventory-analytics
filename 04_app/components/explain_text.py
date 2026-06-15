@@ -19,7 +19,7 @@ def render_explain():
     # corporate translations dictionary with f-strings and secure injections (\\$)
     text = {
         "Español": {
-            "col1_t1": "### Materiales Emitidos sin Departamento",
+            "col1_t1": "### ❓✨ Materiales Emitidos sin Departamento",
             "col1_c1": f"Se registraron **{count_unspecified_dept} salidas de almacén sin asignar**, lo que significa que se desconoce el departamento de destino final que recibió dichos insumos. Este vacío de trazabilidad representa un coste económico acumulado de **\\${impact_unspecified:,.2f} USD**.",
             "col1_t2": "**Distribución porcentual por tipo de material:**",
             "col1_l1": """
@@ -54,7 +54,7 @@ def render_explain():
              """
         },
         "English": {
-            "col1_t1": "### Materials Issued Without Department",
+            "col1_t1": "### ❓✨ Materials Issued Without Department",
             "col1_c1": f"There were **{count_unspecified_dept} unassigned warehouse outputs** recorded, meaning the final destination department that received these supplies is unknown. This traceability gap represents an accumulated economic cost of **\\${impact_unspecified:,.2f} USD**.",
             "col1_t2": "**Percentage distribution by material type:**",
             "col1_l1": """
@@ -85,7 +85,7 @@ def render_explain():
              * 📊 **Optimization (Stable Performance):** Presents a moderate and balanced financial execution, registering outputs of **\\$274,771.21 USD** in Class A and **\\$54,493.93 USD** in categories B and C.
              * ⚠️ **SSEE Anomaly (Inverted Spending):** The only high-volume department breaking the logical trend. The dispatch of lower criticality materials (Classes B and C) reaches **\\$120,302.53 USD**, nearly **doubling** the consumption of high-priority Class A materials, which only amounts to **\\$66,656.21 USD**.
              
-             **Optimization Strategy:** Over **90% of Class A capital** (more than **\\$2.35M USD**) is exclusively concentrated in *Operational Maintenance* and *Electrical Services*. Warehouse audits and long-term contract negotiations must focus on these two areas, while *SSEE* requires a technical review to justify its unusual demand for Class B and C materials.
+             **Optimization Strategy:** Over **90% of textosClass A capital** (more than **\\$2.35M USD**) is exclusively concentrated in *Operational Maintenance* and *Electrical Services*. Warehouse audits and long-term contract negotiations must focus on these two areas, while *SSEE* requires a technical review to justify its unusual demand for Class B and C materials.
              """
         }
     }
