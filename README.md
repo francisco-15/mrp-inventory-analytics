@@ -39,7 +39,7 @@ El sistema implementa una arquitectura de datos moderna y completamente desplega
 * **Migración a la Nube y Restricciones de Permisos (MySQL Error 1227):** Al migrar el esquema de la base de datos local a *Aiven Cloud*, el servidor remoto rechazó el script de importación debido a políticas estrictas de seguridad sobre los privilegios de usuario (restricciones de `DEFINER` en las vistas).
   * *Solución:* Se reconfiguró el flujo de exportación utilizando parámetros avanzados en MySQL Workbench (`--skip-definer` y `--skip-triggers`). Esto permitió generar un volcado SQL neutro y compatible con los estándares de seguridad en la nube, garantizando la integridad del modelo de datos.
 
-* **Automatización de Procesos por Lotes (Batch Processing):** Al implementar la lógica para procesar materiales por lotes, enfrenté un desafío técnico debido a que era mi primera experiencia aplicando esta arquitectura sumado con la primera vez que trabajba con groq en análiis del google colab.
+* **Automatización de Procesos por Lotes (Batch Processing):** Al implementar la lógica para procesar materiales por lotes, enfrenté un desafío técnico debido a que era mi primera experiencia aplicando esta arquitectura sumado con la primera vez que trabajba con groq en análisis del google colab.
   * *Solución:* Realicé una investigación profunda en repositorios de referencia y utilicé el apoyo de herramientas de Inteligencia Artificial para reestructurar la lógica de mi script, logrando una implementación funcional y eficiente.
 
 ## 💻 Instalación y Uso Local
